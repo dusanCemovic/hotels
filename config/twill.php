@@ -16,5 +16,7 @@ return [
         'en',
         'sl',
     ],
+    'admin_app_path' => 'cms',
+    'admin_app_url' => env('ADMIN_APP_URL', null),
     'publish_date_24h' => true,
 ];

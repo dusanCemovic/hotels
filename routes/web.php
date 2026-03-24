@@ -1,12 +1,17 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
+// LaravelLocalization middleware group
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+    // localeSessionRedirect - Redirects users based on a locale stored in their session.
+    // localizationRedirect - Ensures that URLs are always properly localized (have a locale prefix when needed).
+    // localeViewPath - Loads views from locale-specific folders. (resources/views/sl/home.blade.php)
 ], function () {
     Route::get('/', function () {
         return view('welcome');
@@ -21,14 +26,9 @@ Route::group([
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-        // Hotel routes
-        Route::get('/rooms', function () {
-            return 'Room listing (' . app()->getLocale() . ')';
-        })->name('rooms.index');
-
-        Route::get('/rooms/{room}', function ($room) {
-            return 'Room detail: ' . $room . ' (' . app()->getLocale() . ')';
-        })->name('rooms.show');
+        // Hotel routes for normal user
+        Route::get('/rooms', [RoomController::class, 'index'])->name('rooms.index');
+        Route::get('/rooms/{room}', [RoomController::class, 'show'])->name('rooms.show');
 
         Route::get('/my-reservations', function () {
             return 'My reservations (' . app()->getLocale() . ')';

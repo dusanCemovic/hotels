@@ -21,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // this will add link in header of twill cms
         TwillNavigation::addLink(
             NavigationLink::make()->forModule('rooms')
         );

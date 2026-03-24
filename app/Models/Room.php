@@ -10,6 +10,10 @@ use A17\Twill\Models\Behaviors\Sortable;
 use A17\Twill\Models\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * This is the main model for your rooms. It is Twill model.
+ * It has translations, revisions, media, etc.
+ */
 class Room extends Model implements Sortable
 {
     use HasTranslation, HasMedias, HasRevisions, HasPosition;
