@@ -29,11 +29,8 @@
 
                             <!-- Step 5 will add the reservation form here -->
                             <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
-                                <h4 class="text-lg font-semibold mb-2">{{ __('Make a Reservation') }}</h4>
-                                <p class="text-gray-600 mb-4">{{ __('Ready to book this room?') }}</p>
-                                <div class="text-sm text-yellow-600 font-medium">
-                                    {{ __('Reservation form coming in the next step!') }}
-                                </div>
+                                <h4 class="text-lg font-semibold mb-4">{{ __('Make a Reservation') }}</h4>
+                                @livewire('reservation-form', ['room' => $room])
                             </div>
                         </div>
                     </div>

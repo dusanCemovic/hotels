@@ -48,6 +48,12 @@ class Room extends Model implements Sortable
         ],
     ];
 
+
+    public function reservations(): HasMany
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
     // revisions and translations are enabled by default and inherit by twill model
 
 }

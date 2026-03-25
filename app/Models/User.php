@@ -63,4 +63,12 @@ class User extends Authenticatable implements FilamentUser
             || str_ends_with($this->email, 'cemovic@gmail.com');
         */
     }
+
+    /**
+     * @return User
+     */
+    public function reservations(): User
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }
