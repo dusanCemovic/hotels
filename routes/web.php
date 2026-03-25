@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -21,9 +22,9 @@ Route::group([
         return view('welcome');
     });
 
-    Route::get(LaravelLocalization::transRoute('routes.dashboard'), function () {
-        return view('dashboard');
-    })->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get(LaravelLocalization::transRoute('routes.dashboard'), [DashboardController::class, 'index'])
+        ->middleware(['auth', 'verified'])
+        ->name('dashboard');
 
     Route::middleware('auth')->group(function () {
         Route::get(LaravelLocalization::transRoute('routes.profile'), [ProfileController::class, 'edit'])->name('profile.edit');
@@ -34,9 +35,7 @@ Route::group([
         Route::get(LaravelLocalization::transRoute('routes.rooms'), [RoomController::class, 'index'])->name('rooms.index');
         Route::get(LaravelLocalization::transRoute('routes.room'), [RoomController::class, 'show'])->name('rooms.show');
 
-        Route::get(LaravelLocalization::transRoute('routes.my-reservations'), function () {
-            return 'My reservations (' . app()->getLocale() . ')';
-        })->name('my-reservations');
+        Route::get(LaravelLocalization::transRoute('routes.my-reservations'), [\App\Http\Controllers\ReservationController::class, 'index'])->name('my-reservations');
     });
 
     // Explicitly group auth routes as well if needed, or rely on auth.php

@@ -65,9 +65,9 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
-     * @return User
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function reservations(): User
+    public function reservations(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Reservation::class);
     }
