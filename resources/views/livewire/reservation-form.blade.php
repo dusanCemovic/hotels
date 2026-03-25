@@ -4,7 +4,7 @@
             <span class="font-medium">{{ __('rooms.reservation-form.success') }}</span>
         </div>
     @else
-        <form wire:submit.prevent="{{ $step === 1 ? 'nextStep' : 'submit' }}">
+        <form wire:submit.prevent="submit">
             @if($step === 1)
                 <div class="space-y-4">
                     <h3 class="text-lg font-semibold text-gray-900">{{ __('rooms.reservation-form.step1') }}</h3>

@@ -33,7 +33,7 @@
                             <!-- Step 5 will add the reservation form here -->
                             <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
                                 <h4 class="text-lg font-semibold mb-4">{{ __('rooms.make-reservation') }}</h4>
-                                @livewire('reservation-form', ['room' => $room])
+                                @livewire('reservation-form', ['roomId' => $room->id])
                             </div>
                         </div>
                     </div>

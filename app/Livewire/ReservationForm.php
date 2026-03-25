@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Room;
 use Livewire\Component;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
@@ -20,9 +21,14 @@ class ReservationForm extends Component
     public $name;
     public $email;
 
-    public function mount($room)
+    public function mount($roomId)
     {
-        $this->room = $room;
+        try {
+            $this->room = Room::findOrFail($roomId);
+        } catch (\Exception $e) {
+            return redirect()->route('rooms.index')->with('error', 'Room not found');
+        }
+
         if (Auth::check()) {
             $this->name = Auth::user()->name;
             $this->email = Auth::user()->email;
@@ -39,7 +45,27 @@ class ReservationForm extends Component
         $this->step = 2;
     }
 
-    public function submit()
+    public function submit(): void
+    {
+        if ($this->step === 1) {
+            $this->nextStep();
+        } else if ($this->step === 2) {
+            $this->makeReservation();
+        }
+        // else contunue
+
+    }
+
+    public function render()
+    {
+        return view('livewire.reservation-form');
+    }
+
+    /**
+     * Check and make reservation based on params
+     * @return void
+     */
+    private function makeReservation()
     {
         $this->validate([
             'name' => 'required|string|max:255',
@@ -56,10 +82,5 @@ class ReservationForm extends Component
         ]);
 
         $this->isSuccess = true;
-    }
-
-    public function render()
-    {
-        return view('livewire.reservation-form');
     }
 }
