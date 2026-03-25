@@ -15,6 +15,8 @@ class RoomController extends BaseModuleController
 {
     protected $moduleName = 'rooms';
 
+    protected $previewView = 'rooms.show';
+
     protected function setUpController(): void
     {
         // Disable permalink generation for this module
@@ -28,6 +30,10 @@ class RoomController extends BaseModuleController
     public function getForm(TwillModelContract $model): Form
     {
         $form = parent::getForm($model);
+
+        $form->add(
+            Input::make()->name('title')->label('Title')->translatable()
+        );
 
         $form->add(
             Wysiwyg::make()->name('description')->label('Description')->translatable()

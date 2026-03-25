@@ -1,3 +1,6 @@
+@php
+    $room = $room ?? $item;
+@endphp
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -15,7 +18,7 @@
                                 <img src="{{ $room->image('cover', 'default') }}" alt="{{ $room->title }}" class="w-full rounded-lg shadow-md">
                             @else
                                 <div class="w-full aspect-video bg-gray-200 flex items-center justify-center text-gray-400 rounded-lg shadow-md">
-                                    {{ __('No Image') }}
+                                    {{ __('rooms.no-image') }}
                                 </div>
                             @endif
                         </div>
@@ -29,7 +32,7 @@
 
                             <!-- Step 5 will add the reservation form here -->
                             <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
-                                <h4 class="text-lg font-semibold mb-4">{{ __('Make a Reservation') }}</h4>
+                                <h4 class="text-lg font-semibold mb-4">{{ __('rooms.make-reservation') }}</h4>
                                 @livewire('reservation-form', ['room' => $room])
                             </div>
                         </div>

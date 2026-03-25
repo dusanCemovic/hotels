@@ -209,6 +209,9 @@ Frontend room listing
 ### Step 5
 Reservation system (Livewire)
 
+### Step 5.1
+Adjust all translations
+
 ### Step 6
 My reservations page
 
