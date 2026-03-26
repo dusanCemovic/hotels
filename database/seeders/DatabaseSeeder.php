@@ -13,11 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // insert admin user for filament and for twill cms
+        // insert rooms
+        $this->call([
+            AdminUserSeeder::class,
+            RoomSeeder::class,
         ]);
     }
 }
