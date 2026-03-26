@@ -9,14 +9,14 @@
                 <div class="space-y-4">
                     <h3 class="text-lg font-semibold text-gray-900">{{ __('rooms.reservation-form.step1') }}</h3>
                     <div>
-                        <x-input-label for="date_from" :value="__('rooms.reservation-form.date-from')" />
-                        <x-text-input id="date_from" class="block mt-1 w-full" type="date" wire:model="date_from" required />
-                        <x-input-error :messages="$errors->get('date_from')" class="mt-2" />
+                        <x-input.input-label for="date_from" :value="__('rooms.reservation-form.date-from')" />
+                        <x-input.input-text id="date_from" class="block mt-1 w-full" type="date" wire:model="date_from" required />
+                        <x-input.input-error :messages="$errors->get('date_from')" class="mt-2" />
                     </div>
                     <div>
-                        <x-input-label for="date_to" :value="__('rooms.reservation-form.date-to')" />
-                        <x-text-input id="date_to" class="block mt-1 w-full" type="date" wire:model="date_to" required />
-                        <x-input-error :messages="$errors->get('date_to')" class="mt-2" />
+                        <x-input.input-label for="date_to" :value="__('rooms.reservation-form.date-to')" />
+                        <x-input.input-text id="date_to" class="block mt-1 w-full" type="date" wire:model="date_to" required />
+                        <x-input.input-error :messages="$errors->get('date_to')" class="mt-2" />
                     </div>
                     <div class="flex items-center justify-end mt-4">
                         <x-primary-button class="ms-3">
@@ -28,14 +28,14 @@
                 <div class="space-y-4">
                     <h3 class="text-lg font-semibold text-gray-900">{{ __('rooms.reservation-form.step2') }}</h3>
                     <div>
-                        <x-input-label for="name" :value="__('rooms.reservation-form.name')" />
-                        <x-text-input id="name" class="block mt-1 w-full" type="text" wire:model="name" required />
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        <x-input.input-label for="name" :value="__('rooms.reservation-form.name')" />
+                        <x-input.input-text id="name" class="block mt-1 w-full" type="text" wire:model="name" required />
+                        <x-input.input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
                     <div>
-                        <x-input-label for="email" :value="__('rooms.reservation-form.email')" />
-                        <x-text-input id="email" class="block mt-1 w-full" type="email" wire:model="email" required />
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                        <x-input.input-label for="email" :value="__('rooms.reservation-form.email')" />
+                        <x-input.input-text id="email" class="block mt-1 w-full" type="email" wire:model="email" required />
+                        <x-input.input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
                     <div class="flex items-center justify-between mt-4">
                         <button type="button" wire:click="$set('step', 1)" class="text-sm text-gray-600 hover:text-gray-900 underline">

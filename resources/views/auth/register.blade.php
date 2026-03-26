@@ -9,43 +9,35 @@
 
                     <!-- Name -->
                     <div>
-                        <label for="name" class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ __('login.name') }}</label>
-                        <input id="name" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" />
-                        @error('name')
-                            <p class="text-sm text-red-600 dark:text-red-400 mt-2">{{ $message }}</p>
-                        @enderror
+                        <x-input.input-label for="name" :value="__('login.name')" />
+                        <x-input.input-text id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                        <x-input.input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
                     <!-- Email Address -->
                     <div class="mt-4">
-                        <label for="email" class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ __('login.email') }}</label>
-                        <input id="email" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" type="email" name="email" value="{{ old('email') }}" required autocomplete="username" />
-                        @error('email')
-                            <p class="text-sm text-red-600 dark:text-red-400 mt-2">{{ $message }}</p>
-                        @enderror
+                        <x-input.input-label for="email" :value="__('login.email')" />
+                        <x-input.input-text id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                        <x-input.input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
                     <!-- Password -->
                     <div class="mt-4">
-                        <label for="password" class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ __('login.password') }}</label>
-                        <input id="password" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
+                        <x-input.input-label for="password" :value="__('login.password')" />
+                        <x-input.input-text id="password" class="block mt-1 w-full"
                                         type="password"
                                         name="password"
                                         required autocomplete="new-password" />
-                        @error('password')
-                            <p class="text-sm text-red-600 dark:text-red-400 mt-2">{{ $message }}</p>
-                        @enderror
+                        <x-input.input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
                     <!-- Confirm Password -->
                     <div class="mt-4">
-                        <label for="password_confirmation" class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ __('login.confirm-password') }}</label>
-                        <input id="password_confirmation" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
+                        <x-input.input-label for="password_confirmation" :value="__('login.confirm-password')" />
+                        <x-input.input-text id="password_confirmation" class="block mt-1 w-full"
                                         type="password"
                                         name="password_confirmation" required autocomplete="new-password" />
-                        @error('password_confirmation')
-                            <p class="text-sm text-red-600 dark:text-red-400 mt-2">{{ $message }}</p>
-                        @enderror
+                        <x-input.input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>
 
                     <div class="flex items-center justify-end gap-4 mt-4 flex-wrap">
