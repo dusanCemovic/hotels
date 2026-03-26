@@ -23,6 +23,7 @@ class ReservationForm extends Component
 
     public function mount($roomId)
     {
+        // didn't want to send room cuz it will be visible in browser, so i used roomId
         try {
             $this->room = Room::findOrFail($roomId);
         } catch (\Exception $e) {

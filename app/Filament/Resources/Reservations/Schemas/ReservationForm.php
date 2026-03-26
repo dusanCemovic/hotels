@@ -18,8 +18,7 @@ class ReservationForm
                     ->searchable()
                     ->required(),
                 Select::make('room_id')
-                    ->relationship('room', 'title')
-                    ->searchable()
+                    ->options(\App\Models\Room::all()->pluck('title', 'id'))
                     ->required(),
                 DatePicker::make('date_from')
                     ->required(),

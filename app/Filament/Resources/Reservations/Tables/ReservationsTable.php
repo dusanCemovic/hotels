@@ -22,8 +22,13 @@ class ReservationsTable
                     ->searchable(),
                 TextColumn::make('room.title')
                     ->label('Room')
-                    ->sortable()
-                    ->searchable(),
+                    ->searchable(query: function ($query, $search) {
+                        return $query->whereHas('room', function ($query) use ($search) {
+                            $query->whereHas('translations', function ($query) use ($search) {
+                                $query->where('title', 'like', "%{$search}%");
+                            });
+                        });
+                    }),
                 TextColumn::make('date_from')
                     ->date()
                     ->sortable(),

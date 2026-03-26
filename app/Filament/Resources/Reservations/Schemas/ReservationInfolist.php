@@ -11,10 +11,10 @@ class ReservationInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('user_id')
-                    ->numeric(),
-                TextEntry::make('room_id')
-                    ->numeric(),
+                TextEntry::make('user.name')
+                    ->label('User'),
+                TextEntry::make('room.title')
+                    ->label('Room'),
                 TextEntry::make('date_from')
                     ->date(),
                 TextEntry::make('date_to')
