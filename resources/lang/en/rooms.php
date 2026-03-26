@@ -18,5 +18,6 @@ return [
         'name' => 'Name',
         'email' => 'Email',
         'next' => 'Next',
-    ]
+    ],
+    'room-not-found' => 'Room not found.',
 ];

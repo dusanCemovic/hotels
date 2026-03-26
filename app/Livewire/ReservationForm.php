@@ -26,7 +26,7 @@ class ReservationForm extends Component
         try {
             $this->room = Room::findOrFail($roomId);
         } catch (\Exception $e) {
-            return redirect()->route('rooms.index')->with('error', 'Room not found');
+            return redirect()->route('rooms.index')->with('error', __('rooms.room-not-found'));
         }
 
         if (Auth::check()) {

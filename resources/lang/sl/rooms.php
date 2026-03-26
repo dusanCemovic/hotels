@@ -18,5 +18,6 @@ return [
         'name' => 'Ime',
         'email' => 'E-pošta',
         'next' => 'Naprej',
-    ]
+    ],
+    'room-not-found' => 'Soba ni najdena.',
 ];
