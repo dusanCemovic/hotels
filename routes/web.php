@@ -15,12 +15,12 @@ Route::group([
     // localeViewPath - Loads views from locale-specific folders. (resources/views/sl/home.blade.php)
     // localize - Responsible for translating the current route (e.g. /en/rooms -> /sl/sobe)
 ], function () {
-    Route::get('/', function () {
+    Route::get(LaravelLocalization::transRoute('routes.home'), function () {
         if (Auth::check()) {
             return redirect()->route('dashboard');
         }
         return view('welcome');
-    });
+    })->name('home');
 
     Route::get(LaravelLocalization::transRoute('routes.dashboard'), [DashboardController::class, 'index'])
         ->middleware(['auth', 'verified'])

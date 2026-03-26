@@ -60,7 +60,11 @@ Users must register and log in to:
 - View individual room pages
 - Make reservations
 - Access their reservation history
-- For this purpose I will use Laravel Breeze
+- For this purpose is created a user model with the following fields:
+    - Name
+    - Email
+    - Password
+    - Email verification is automatically verified
 ---
 
 ## Rooms
@@ -195,7 +199,7 @@ Install libraries as:
 - Livewire
 
 ### Step 1
-Auth (Breeze Livewire)
+Auth - Login and Registeration
 
 ### Step 2
 Localization setup

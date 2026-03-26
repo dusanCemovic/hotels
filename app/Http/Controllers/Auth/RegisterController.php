@@ -4,32 +4,29 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
-class RegisteredUserController extends Controller
+class RegisterController extends Controller
 {
     /**
-     * Display the registration view.
+     * Show the registration form.
      */
-    public function create(): View
+    public function show(): View
     {
         return view('auth.register');
     }
 
     /**
-     * Handle an incoming registration request.
-     *
-     * @throws ValidationException
+     * Handle the registration request.
      */
     public function store(Request $request): RedirectResponse
     {
+        // validation rules. User needs to have unique email, password needs to be matched
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
@@ -40,12 +37,13 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'email_verified_at' => null,
         ]);
 
-        event(new Registered($user));
+        // for purpose of exam, we will not send email verification, we will mark email as verified
+        $user->markEmailAsVerified();
+        // we won't login automatically, so we will do it manually, since we are pretending that user will validate
 
-        Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('login'))->with('status', __('login.registration-success'));
     }
 }
