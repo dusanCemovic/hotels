@@ -16,7 +16,7 @@ class AdminUserSeeder extends Seeder
             ['email' => 'laravel@humanfrog.com'],
             [
                 'name' => 'Admin',
-                'password' => \Illuminate\Support\Facades\Hash::make('root123'),
+                'password' => \Illuminate\Support\Facades\Hash::make('root'),
                 'is_admin' => true,
             ]
         );

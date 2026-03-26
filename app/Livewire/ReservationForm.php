@@ -35,24 +35,14 @@ class ReservationForm extends Component
         }
     }
 
-    public function nextStep()
-    {
-        $this->validate([
-            'date_from' => 'required|date|after_or_equal:today',
-            'date_to' => 'required|date|after:date_from',
-        ]);
-
-        $this->step = 2;
-    }
-
     public function submit(): void
     {
         if ($this->step === 1) {
-            $this->nextStep();
+            $this->validateDates();
         } else if ($this->step === 2) {
             $this->makeReservation();
         }
-        // else contunue
+        // else continue
 
     }
 
@@ -62,6 +52,22 @@ class ReservationForm extends Component
     }
 
     /**
+     * STEP 1
+     * Validate reservation dates
+     * @return void
+     */
+    private function validateDates(): void
+    {
+        $this->validate([
+            'date_from' => 'required|date|after_or_equal:today',
+            'date_to' => 'required|date|after:date_from',
+        ]);
+
+        $this->step = 2;
+    }
+
+    /**
+     * STEP 2
      * Check and make reservation based on params
      * @return void
      */

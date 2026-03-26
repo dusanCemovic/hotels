@@ -19,7 +19,7 @@ Route::group([
         if (Auth::check()) {
             return redirect()->route('dashboard');
         }
-        return view('welcome');
+        return view('pages.welcome');
     })->name('home');
 
     Route::get(LaravelLocalization::transRoute('routes.dashboard'), [DashboardController::class, 'index'])

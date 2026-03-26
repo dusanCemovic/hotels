@@ -16,6 +16,6 @@ class ReservationController extends Controller
             ->latest()
             ->get();
 
-        return view('reservations.index', compact('reservations'));
+        return view('pages.reservations.index', compact('reservations'));
     }
 }

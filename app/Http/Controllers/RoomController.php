@@ -10,7 +10,7 @@ class RoomController extends Controller
     public function index()
     {
         $rooms = Room::published()->ordered()->get();
-        return view('rooms.index', compact('rooms'));
+        return view('pages.rooms.index', compact('rooms'));
     }
 
     public function show(Room $room)
@@ -18,6 +18,6 @@ class RoomController extends Controller
         if (!$room->published) {
             abort(404);
         }
-        return view('rooms.show', compact('room'));
+        return view('pages.rooms.show', compact('room'));
     }
 }

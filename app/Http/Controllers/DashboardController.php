@@ -18,6 +18,6 @@ class DashboardController extends Controller
             ->latest()
             ->first();
 
-        return view('dashboard', compact('lastReservation'));
+        return view('pages.dashboard', compact('lastReservation'));
     }
 }
