@@ -2,6 +2,7 @@
     @if($isSuccess)
         <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50" role="alert">
             <span class="font-medium">{{ __('rooms.reservation-form.success') }}</span>
+            <a href="{{ route('my-reservations') }}" class="underline">{{ __('navigation.my-reservations') }}</a>
         </div>
     @else
         <form wire:submit.prevent="submit">
@@ -9,12 +10,12 @@
                 <div class="space-y-4">
                     <h3 class="text-lg font-semibold text-gray-900">{{ __('rooms.reservation-form.step1') }}</h3>
                     <div>
-                        <x-input.input-label for="date_from" :value="__('rooms.reservation-form.date-from')" />
+                        <x-input.input-label for="date_from" :value="__('rooms.reservation-form.date-from')" class="dark:text-gray-700" />
                         <x-input.input-text id="date_from" class="block mt-1 w-full" type="date" wire:model="date_from" required />
                         <x-input.input-error :messages="$errors->get('date_from')" class="mt-2" />
                     </div>
                     <div>
-                        <x-input.input-label for="date_to" :value="__('rooms.reservation-form.date-to')" />
+                        <x-input.input-label for="date_to" :value="__('rooms.reservation-form.date-to')" class="dark:text-gray-700" />
                         <x-input.input-text id="date_to" class="block mt-1 w-full" type="date" wire:model="date_to" required />
                         <x-input.input-error :messages="$errors->get('date_to')" class="mt-2" />
                     </div>
