@@ -154,21 +154,24 @@ Admin can:
 
 ## Routes Overview
 
-### Public
-- `/login`
-- `/register`
+All frontend routes are localized and require a language prefix (e.g., `/en/` or `/sl/`).
 
-### Authenticated (localized)
-- `/{locale}/rooms`
-- `/{locale}/rooms/{room}`
-- `/{locale}/my-reservations`
-- `/{locale}/logout`
+### Public Localized
+- `/{locale}` - Home/Welcome page (redirects to dashboard if logged in)
+- `/{locale}/login` - Custom login form
+- `/{locale}/register` - Custom registration form
 
-### CMS
-- `/cms`
+### Authenticated Localized
+- `/{locale}/dashboard` - Main user dashboard
+- `/{locale}/rooms` - Room listing
+- `/{locale}/rooms/{room}` - Individual room details and reservation form
+- `/{locale}/my-reservations` - Overview of user's past and current reservations
+- `/{locale}/profile` - User profile management (edit/update/delete)
+- `/{locale}/logout` - Logout (POST)
 
-### Admin
-- `/admin`
+### Administrative (Non-localized)
+- `/cms` - Twill CMS for managing rooms and multilingual content
+- `/admin` - Filament Admin Panel for managing reservations and data overview
 
 ---
 
@@ -184,7 +187,7 @@ laravel@humanfrog.com
 
 Password:
 ```
-root123
+root
 ```
 
 ---
@@ -222,6 +225,9 @@ My reservations page
 ### Step 7
 Filament admin
 
+### Step 8
+Add seeder for Users and Rooms
+
 ## Installation
 
 ### 1. Clone repository
@@ -247,16 +253,17 @@ php artisan key:generate
 
 Configure database in `.env`.
 
-### 4. Run migrations
+### 4. Run migrations and run seeders
 
 ```
 php artisan migrate
+php artisan db:seed
 ```
 
 ### 5. Build assets
 
 ```
-npm run dev
+npm run build
 ```
 
 ### 6. Start server
