@@ -42,6 +42,12 @@ class LoginController extends Controller
             // Creates a new session ID after login. Prevents session fixation attacks/
             $request->session()->regenerate();
 
+            // DO NOT ALLOW REDIRECT TO CMS
+            $intended = $request->session()->get('url.intended');
+            if ($intended && str_starts_with($intended, url('/cms'))) {
+                return redirect()->route('dashboard');
+            }
+
             // Redirect to the intended page or dashboard
             return redirect()->intended(route('dashboard'));
         }
