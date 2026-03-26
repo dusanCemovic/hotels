@@ -9,4 +9,5 @@ return [
     'last-reservation' => 'Zadnja rezervacija',
     'view-all' => 'Poglej vse rezervacije',
     'start-booking' => 'Poglej proste sobe',
+    'room-not-available' => 'Soba v izbranem terminu ni na voljo.',
 ];

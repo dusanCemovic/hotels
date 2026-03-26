@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Room;
 use Livewire\Component;
-use App\Models\Reservation;
+use App\Services\ReservationService;
 use Illuminate\Support\Facades\Auth;
 
 class ReservationForm extends Component
@@ -36,12 +36,12 @@ class ReservationForm extends Component
         }
     }
 
-    public function submit(): void
+    public function submit(ReservationService $service): void
     {
         if ($this->step === 1) {
             $this->validateDates();
         } else if ($this->step === 2) {
-            $this->makeReservation();
+            $this->makeReservation($service);
         }
         // else continue
 
@@ -70,23 +70,32 @@ class ReservationForm extends Component
     /**
      * STEP 2
      * Check and make reservation based on params
+     * @param ReservationService $service
      * @return void
      */
-    private function makeReservation()
+    private function makeReservation(ReservationService $service): void
     {
+        // validate form data
         $this->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
         ]);
 
-        Reservation::create([
-            'user_id' => Auth::id(),
+        // call service to check if room is available and store reservation
+        $reservation = $service->storeRoom([
             'room_id' => $this->room->id,
             'date_from' => $this->date_from,
             'date_to' => $this->date_to,
             'name' => $this->name,
             'email' => $this->email,
         ]);
+
+        // if room is not available, show error
+        if (!$reservation) {
+            $this->addError('date_from', __('reservations.room-not-available'));
+            $this->step = 1;
+            return;
+        }
 
         $this->isSuccess = true;
     }
