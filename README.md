@@ -281,8 +281,8 @@ My local server has php 8.3, so didn't use docker, Laravel Herd or anything like
 php artisan serve
 ```
 
-### 7. Run Tests
-+ check notes in end of this file
+### 7. *Run Tests
++ check notes at the end of this file BEFORE running a test
 ```
 php artisan test
 ```
@@ -310,7 +310,7 @@ Any running tests now will clear the database, so run again migrations and seede
 - Basic validation is implemented for reservation dates.
 - Localization is handled via URL prefix.
 - Exam has simple test coverage.
-  - Those tests will clear database. So, if you want to run them, run `php artisan migrate:fresh --seed` after it.
+  - Those tests will clear the database. So, if you want to run them, run `php artisan migrate:fresh --seed` after it.
   - You may run: `php artisan test`. This can be later changed not to make db changes.
 
 ---
@@ -323,3 +323,5 @@ Any running tests now will clear the database, so run again migrations and seede
 - Each reservation to have a single page
 - Make new tests and update them not to make db changes.
 - Point out more edge cases and make tests for it.
+- Update 404 page especially for room listing.
+- Add pagination to a room listing.

@@ -9,14 +9,16 @@ class RoomController extends Controller
 {
     public function index()
     {
-        $rooms = Room::published()->ordered()->get();
+        // Show only published rooms with active translations
+        $rooms = Room::published()->withActiveTranslations()->ordered()->get();
         return view('pages.rooms.index', compact('rooms'));
     }
 
     public function show(Room $room)
     {
-        if (!$room->published) {
-            abort(404);
+        // If one room is only available in one language, for the other will redirect to main list
+        if (!$room->published || !$room->hasActiveTranslation()) {
+           return redirect()->route('rooms.index')->with('error', __('rooms.room-not-found'));
         }
         return view('pages.rooms.show', compact('room'));
     }
