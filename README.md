@@ -251,6 +251,7 @@ npm install
 ```
 cp .env.example .env
 php artisan key:generate
+php artisan storage:link
 ```
 
 Configure database in `.env`. It is set to be mysql by default.
@@ -319,9 +320,10 @@ Any running tests now will clear the database, so run again migrations and seede
 
 - Add pricing and availability logic with the proposition for free days.
 - Improve UI/UX
+  - Make dates in reservation form more user friendly and clearer for specific region (e.g. d.M.Y. for Slovenian).
+  - Add pagination to a room listing.
+  - Update 404 page especially for room listing.
 - Using slugs instead of IDs for rooms.
 - Each reservation to have a single page
 - Make new tests and update them not to make db changes.
 - Point out more edge cases and make tests for it.
-- Update 404 page especially for room listing.
-- Add pagination to a room listing.
