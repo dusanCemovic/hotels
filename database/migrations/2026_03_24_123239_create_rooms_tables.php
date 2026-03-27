@@ -9,14 +9,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('rooms', function (Blueprint $table) {
-            // this will create an id, a "published" column, and soft delete and timestamps columns
             createDefaultTableFields($table);
 
+            // this can be later used for sorting rooms
             $table->integer('position')->unsigned()->nullable();
-
-            // add those 2 columns to enable publication timeframe fields (you can use publish_start_date only if you don't need to provide the ability to specify an end date)
-            // $table->timestamp('publish_start_date')->nullable();
-            // $table->timestamp('publish_end_date')->nullable();
         });
 
         Schema::create('room_translations', function (Blueprint $table) {
