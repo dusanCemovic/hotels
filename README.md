@@ -180,7 +180,7 @@ All frontend routes are localized and require a language prefix (e.g., `/en/` or
 ## Admin Credentials
 
 ### Twill (/cms)
-### Filament (/admin)
+### Filament (/admin) + as regular user
 
 Email:
 ```
