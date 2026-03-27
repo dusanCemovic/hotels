@@ -97,7 +97,7 @@ Reservations are created via a two-step form implemented with Livewire.
 After submission, a success message is displayed:
 
 ```
-Uspešna rezervacija
+Reservation successful
 ```
 
 ---
@@ -107,7 +107,7 @@ Uspešna rezervacija
 Users can view their reservations at:
 
 ```
-/moje-rezervacije
+/my-reservations
 ```
 
 ---
@@ -123,6 +123,7 @@ Reservations are managed via:
 Admin can:
 - View all reservations
 - See user and room relationships
+- Add/edit/delete reservations
 
 ---
 
@@ -133,6 +134,7 @@ Admin can:
 - name
 - email
 - password
+- email_verified_at - auto-verified for the purpose of this project
 
 ### Rooms
 - id
@@ -162,7 +164,7 @@ All frontend routes are localized and require a language prefix (e.g., `/en/` or
 - `/{locale}/register` - Custom registration form
 
 ### Authenticated Localized
-- `/{locale}/dashboard` - Main user dashboard
+- `/{locale}/dashboard` - Main user dashboard, with latest reservation (just for showcase)
 - `/{locale}/rooms` - Room listing
 - `/{locale}/rooms/{room}` - Individual room details and reservation form
 - `/{locale}/my-reservations` - Overview of user's past and current reservations
@@ -233,8 +235,8 @@ Add seeder for Users and Rooms
 ### 1. Clone repository
 
 ```
-git clone <repo-url>
-cd project
+git clone https://github.com/dusanCemovic/hotels
+cd hotels
 ```
 
 ### 2. Install dependencies
@@ -251,9 +253,15 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-Configure database in `.env`.
+Configure database in `.env`. It is set to be mysql by default.
+```
+DB_DATABASE=hotels
+DB_USERNAME=user
+DB_PASSWORD=pass
+```
 
 ### 4. Run migrations and run seeders
+Seeder contains Twill admin user, User admin (for Filament) and 2 rooms for showcase.
 
 ```
 php artisan migrate
@@ -267,10 +275,19 @@ npm run build
 ```
 
 ### 6. Start server
+My local server has php 8.3, so didn't use docker, Laravel Herd or anything like that.
 
 ```
 php artisan serve
 ```
+
+### 7. Run Tests
++ check notes in end of this file
+```
+php artisan test
+```
++ For showcase, i have added some tests. One of them is for reservationService, which checks availability of room and create reservation.
+Any running tests now will clear the database, so run again migrations and seeders after it.
 
 ---
 
@@ -279,21 +296,30 @@ php artisan serve
 - **Livewire** is used for the reservation flow to handle the multi-step form without full page reloads.
 - **Twill CMS** is used for managing rooms to provide a structured and multilingual content editing experience.
 - **Filament** is used for admin management due to its speed and ease of building admin panels.
-- **URL-based localization** ensures clear language separation and better user experience.
+- **URL-based localization** ensures clear language separation and better user experience. For now, it is used id for rooms. This can be updated with translated slugs.
 - **Separation of concerns** between CMS, frontend, and admin improves maintainability.
 
 ---
 
 ## Notes
 
+- Rooms can't be reserved if they are already booked in that period. That's why there is a checker called in the Livewire component. It returns an error message if the room is already booked (simple). 
+- We are using ReservationService for availlability and adding reservation. This is done just for good practice how to separate concerns, using dependency injection.
+- Separating service is also good for testing. Test for ReservationService is in ReservationServiceTest.php. I did that, because this is a good example of edge cases.
 - Users must be authenticated to access room-related pages.
 - Basic validation is implemented for reservation dates.
 - Localization is handled via URL prefix.
+- Exam has simple test coverage.
+  - Those tests will clear database. So, if you want to run them, run `php artisan migrate:fresh --seed` after it.
+  - You may run: `php artisan test`. This can be later changed not to make db changes.
 
 ---
 
 ## Future Improvements
 
-- Prevent overlapping reservations
-- Add pricing and availability logic
+- Add pricing and availability logic with the proposition for free days.
 - Improve UI/UX
+- Using slugs instead of IDs for rooms.
+- Each reservation to have a single page
+- Make new tests and update them not to make db changes.
+- Point out more edge cases and make tests for it.
