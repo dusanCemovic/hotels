@@ -28,7 +28,7 @@ The application is divided into three main parts:
 ## Tech Stack
 
 - PHP 8.3
-- Laravel 11
+- Laravel 11.x
 - Livewire
 - Twill CMS
 - Filament 5.x
